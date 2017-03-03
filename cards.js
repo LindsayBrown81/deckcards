@@ -27,27 +27,50 @@ window.onload= function cardMaker () {
   	var cardObjList = document.createElement("ul");
 	// cardObjList = contentDocument.documentElement;
  	// document.appendChild(cardObjList);
+ 	document.body.appendChild(cardObjList);
  	
  	// Create an anchor span on which all cards will be appended at the bottom of the loop.
-	// After the loop terminates, then append this anchor to the actual DOM.   
+	// After the loop terminates, then append this anchor to the actual DOM. 
 	var anchor = document.createElement("span");
 
-	// Declare and initialize card parts
-	var cardObj = document.createElement("div");
-		topLeft = document.createElement("div");
-	 	bottomRight = document.createElement("div");
-	 	suit = document.createElement("div");
-	 	rank = document.createElement("div");
-	 	theCenter = document.createElement("div");
-  
-		anchor.className = "flex-container";
-		cardObj.className = "card flex-container";
-		topLeft.className = "top-left";
-		bottomRight.className = "bottom-right upsidedown";
-		suit.className = "suit";
-		rank.className = "rank";
-		theCenter.className = "the-center flex-container";
-  
+	// var cardObj = document.createElement("div");
+
+	// Make card divs but don't add text yet
+	function makeDiv(){
+		var div = document.createElement("div");
+		// div.appendChild(document.createTextNode(text));
+		return div;
+	}
+	
+	var divs = [
+		makeDiv("cardObj"), // ERROR: cardObj is not defined STOP POINT
+		makeDiv("topLeft"),
+	 	makeDiv("bottomRight"),
+	 	makeDiv("suit"),
+	 	makeDiv("rank"),
+	 	makeDiv("theCenter")
+ 	];
+
+ 	var docFragment = document.createDocumentFragment();
+ 	
+ 	for(var i=0; i<divs.length; i++) {
+ 		console.log(divs[i]);
+ 		docFragment.appendChild(divs[i]); // not yet appended to document root on DOM
+	}
+	// Append all divs to anchor for card
+	// anchor.appendChild(docFragment);
+	cardObjList.appendChild(docFragment);
+  	
+  	// Assign classes to divs for layout and painting	
+	anchor.className = "flex-container";
+	cardObj.className = "card flex-container";
+	topLeft.className = "top-left";
+	bottomRight.className = "bottom-right upsidedown";
+	suit.className = "suit";
+	rank.className = "rank";
+	theCenter.className = "the-center flex-container";
+
+	// Add text nodes to divs  
 	// Loop through the first array in cardJson and ...
 	for (let sym of cardJson.syms) { 
         
