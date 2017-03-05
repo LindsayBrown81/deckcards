@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html" charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Deck of Cards</title>
+
+<link rel="stylesheet" href="cards.css">
+</head>
+
+<body>
+
+<h1>Your task:</h1>
+<h2>Fork this codepen to your own account (or an anonymous account) and create an entire deck of cards based on the image below using CSS and JavaScript.<h2>
+  <h3>The end result should be a function that generates 52 individual cards on the screen: 13 hearts, 13 spades, 13 diamonds, 13 clubs. You should generate the cards with JavaScript and add styles using CSS. You may use the Unicode characters: &spades;, &hearts;, &diams;, and &clubs;. The "face cards" (jack, queen, king, ace) do not need any special illustration on the body of the card but should be noted with the letter (as in the example). </h3>
+  <h3>When complete, you should save the pen and email back a link to the URL where we can view your work. Code quality and self-documentation will be considered in our evaluation.</h3>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Playing_card_spade_A.svg/2000px-Playing_card_spade_A.svg.png" width="200px"/>
+  
+  
+	<ul id="card-obj-list"></ul>
+	  
+	  <div id="the-template">	  	
+
+		<div class="card flex-container">
+
+			  <div class="top-left">
+			    <div class="rank"></div>
+			    <div class="suit"></div>
+		    </div>
+		    
+		    <div class="the-center flex-container"></div>
+
+		    <div class="bottom-right upsidedown">
+			    <div class="rank"></div>
+			    <div class="suit"></div>
+		    </div>
+
+		</div>
+	  
+	  </div>
+	  <!-- End of template -->
+
+  
+<!-- Please do not add anything in this file as you complete this challenge. You will complete your work entirely in CSS and JavaScript. -->
+
+
+<script type="text/javascript" src="cards.js"></script>
+
+</body> 
+</html>

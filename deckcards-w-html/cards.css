@@ -1,0 +1,90 @@
+/* Flexbox layout model is used */
+
+@charset "UTF-8";       /* Set the encoding of the style sheet to Unicode UTF-8 */
+
+span, .flex-container  {
+	list-style: none;
+
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+}
+
+ul  {
+	list-style: none;
+	background: #eeeeee;
+}
+
+ #the-template {
+	display: none;
+} 
+
+.card {
+	display: flex;
+	margin: .15em;
+	-webkit-flex-flow: row nowrap;
+	flex-flow: row nowrap;
+    justify-content: space-between;
+	width: 200px;
+	height: 250px;
+	border: solid 2px #000000;
+	border-radius: 15px;
+	-webkit-user-select: none;
+	background-color: #ffffff; 
+	cursor: zoom-in;
+	font-size: 1.75em;
+}
+
+.red {
+	color: #ff0000;
+}
+
+.the-center {
+	flex: 0 1 auto;
+    flex-flow: column wrap;
+    padding-top: .30em;
+}
+
+
+.top-left, .bottom-right {
+	display: inline-block;
+	margin: .12em .25em;
+	flex: 0 1 auto;
+	align-self: flex-start;	
+}
+
+.bottom-right {
+	align-self: flex-end;
+}
+
+.upsidedown {
+ 	-webkit-transform: rotateX(180deg)rotateY(180deg);
+  	transform: rotateX(180deg)rotateY(180deg);
+}
+
+.suit, .rank {
+	font-family: Cambria Math;
+	font-size: 1em;
+	text-align: center;
+}
+
+.rank {
+	margin-bottom: -.34em;
+  margin-top: .20em;
+}
+
+.facecard {
+	flex: 0 1 4em;
+	font-size: 4em;
+}
+
+.numcard {
+	flex: 0 1 4em;
+	font-size: 1.28em;
+}
+
