@@ -24,7 +24,7 @@ ul  {
 	display: none;
 } */
 
-.card {
+.card, #card-obj-1 {
 	display: flex;
 	margin: .15em;
 	-webkit-flex-flow: row nowrap;
