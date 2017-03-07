@@ -1,45 +1,38 @@
 // Vanilla JavaScript. No templating framework is used.
 window.onload = function cardMaker() {
 
-	"use strict";
+  "use strict";
 
-	var docFragment = document.createDocumentFragment("ul");
+  var docFragment = document.createDocumentFragment("span");
 
-	
 	var template = function cardTemplateMaker() {
-	 	// Make a card object. serves as card template div that can be cloned.
+	 	// Make a card object to serve as card template div that can be cloned.
 		let cardObjTemplate = {};
 	    cardObjTemplate = document.createElement("div");
 		cardObjTemplate.id = "card-template";
 		docFragment.appendChild(cardObjTemplate);
-		// console.log(cardObjTemplate); // empty object at this point
 
-		// Create a reference for the card template in its growing phase/as it gets more child divs
-		const growingCard = docFragment.querySelector("#card-template");
+		// Create a reference for the card template in its growing phase as it acquires more child divs
+		let growingCard = docFragment.querySelector("#card-template");
+		// console.log(growingCard);
 
-		console.log(growingCard);
-
-		// Make card wrapper div but don't add text yet
+		// Make card wrapper div
 		let cardWrapDiv = document.createElement("div");
-		cardWrapDiv.className = "card flex-container"; // Good! "card flex-container"
+		cardWrapDiv.className = "card flex-container"; 
 		// Append card wrapper div to the growing card template 
 	    growingCard.appendChild(cardWrapDiv);
 		
-		// Make card child divs but don't add text yet
-		// an array of first level child divs to add to growingCard
+		// Make 3 second-level child divs from an array of div class names
 		let childDivs = ["top-left", "the-center flex-container", "bottom-right upsidedown"];
 		
 		childDivs.forEach( function( entry ) {
 			let childDiv = document.createElement("div");
 			childDiv.className = entry;
-			// console.log(childDiv); // Good! "top-left" "bottom-right upsidedown" "the-center flex-container"
-			
-			// Append the 3 child divs WITHIN the cardWrapDiv
+			// Append the 3 first child divs within the cardWrapDiv
 			growingCard.childNodes[0].appendChild(childDiv);
-			// console.log("growingCard.nodeType", growingCard.nodeType); // 1. growingCard is an element node.  
 		}); 
 
-		// Make 2 inner most divs but don't add text yet. MOVE THESE TWO LINES TO GLOBAL?
+		// Make 2 inner most divs 
 		var suitDiv = document.createElement("div");
 		var rankDiv = document.createElement("div");
 		
@@ -51,7 +44,6 @@ window.onload = function cardMaker() {
 			var getTopLeft = docFragment.querySelector(" .top-left");
 			getTopLeft.appendChild(suitDiv);
 			getTopLeft.appendChild(rankDiv);
-			console.log("getTopLeft", getTopLeft);
 			return getTopLeft;
 		}();
 
@@ -62,18 +54,16 @@ window.onload = function cardMaker() {
 			var rankDup = rankDiv.cloneNode(); 
 			getBottomRight.appendChild(suitDup);
 			getBottomRight.appendChild(rankDup);
-			console.log("getBottomRight", getBottomRight);
 			return getBottomRight;
 		}();
 
-		docFragment.appendChild(growingCard);
+		// Now that the card is done growing, rename it back to cardObjTemplate. 
+		growingCard = cardObjTemplate;
+		// return cardObjTemplate; // didn't work
+		docFragment.appendChild(cardObjTemplate);
 
-	    // Finally, append docFragment loaded w 52 cardObjs onto DOM. docFragment vanishes, appending only its sub tree.	
-		document.body.appendChild(docFragment); 
-
-	}(); // closes function cardTemplateMaker() {
+	}(); // closes var template = function cardTemplateMaker(cardObjTemplate) {
 	  
-	// Whats global: nothing from cardTemplateMaker function, but the DOM element it appended to document body.
 	
 	let deck = function deckMaker () {
 		
@@ -89,12 +79,11 @@ window.onload = function cardMaker() {
 		  	"chars": [ "A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K" ]
 		  };
 
-		// The template object based on the element with id of card-template
-		theTemplate = document.getElementById("card-template"); 
-		console.log(theTemplate);
+		theTemplate = docFragment.querySelector("#card-template");
+		// console.log(theTemplate);
 		// Create an anchor span on which all cards will be appended at the bottom of the loop.
 		// After the loop terminates, then append this anchor to the actual DOM.                                                    
-		anchor = document.createElement("span");	
+		// anchor = docFragment.createElement("span");	
 		
 		// Loop through the first array in cardJson and ...
 		for (let sym of cardJson.syms) {
@@ -115,6 +104,7 @@ window.onload = function cardMaker() {
 		  		// Create deep clone of the template with true
 				cardObj = theTemplate.cloneNode(true);
 				cardObj.setAttribute("id", sym + char );
+				console.log(cardObj);
 	           
 	      		// Create a unique reference for all cards/get their SUIT class divs
 				suitsArr = cardObj.querySelectorAll("#" + sym + char + " .suit");
@@ -167,19 +157,19 @@ window.onload = function cardMaker() {
 		   		} 
 					
 				// Add all cardObjs to anchor span, to be rendered when loop has terminated
-				anchor.appendChild(cardObj);
+				// anchor.appendChild(cardObj);
+				docFragment.appendChild(cardObj);
 			}
 					  
 		}	
 
-		// Finally, append anchor span on to DOM after the loop has terminated 
-		document.getElementById("card-obj-list").appendChild(anchor); 
+		// Append all cards on span onto document fragment after the loop has terminated 
+		// docFragment.appendChild(anchor); 
 	
+	}(); // closes let deck = function deckMaker () {
 	
-	}();//(); // closes let deck = function deckMaker () {
-	
-	// Finally, append docFragment loaded w 52 cardObjs onto DOM. docFragment vanishes, appending only its sub tree.	
-	// document.body.appendChild(docFragment);
+	// Finally, append all cards onto DOM. docFragment vanishes, appending only its sub tree.	
+	document.body.appendChild(docFragment);
 	
 }();
 
