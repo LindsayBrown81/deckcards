@@ -20,9 +20,6 @@ ul  {
 	background: #eeeeee;
 }
 
-/* #the-template {
-	display: none;
-} */
 
 .card, #card-template {
 	display: flex;
@@ -39,6 +36,10 @@ ul  {
 	cursor: zoom-in;
 	font-size: 1.75em;
 }
+
+ #card-template {
+	/*display: none;*/
+} 
 
 .red {
 	color: #ff0000;
