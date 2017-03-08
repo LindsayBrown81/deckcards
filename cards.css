@@ -26,7 +26,7 @@ ul  {
 	margin: .15em;
 	-webkit-flex-flow: row nowrap;
 	flex-flow: row nowrap;
-    justify-content: space-between;
+	justify-content: space-between;
 	width: 200px;
 	height: 250px;
 	border: solid 2px #000000;
@@ -38,7 +38,7 @@ ul  {
 }
 
  #card-template {
-	/*display: none;*/
+	display: none;
 } 
 
 .red {
@@ -47,8 +47,8 @@ ul  {
 
 .the-center {
 	flex: 0 1 auto;
-    flex-flow: column wrap;
-    padding-top: .30em;
+	flex-flow: column wrap;
+	padding-top: .30em;
 }
 
 
@@ -76,7 +76,7 @@ ul  {
 
 .rank {
 	margin-bottom: -.34em;
-  margin-top: .20em;
+	margin-top: .20em;
 }
 
 .facecard {
